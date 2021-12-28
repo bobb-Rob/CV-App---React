@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+}
+
+:root{
+    --blueGreen: rgb(10, 218, 218);
+}
+
+
+.header{
+    
+    display: flex;
+    height: 40px;
+    align-items: center;
+    background-color: rgb(10, 10, 10);
+}
+
+.icon-container{
+    height: 30px;
+    width: 30px;
+    background-color: var(--blueGreen);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70px;
+    margin-right: 20px;
+}
+
+.name-container{
+    color: white;
+}

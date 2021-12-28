@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+}
+
+:root{
+    --blueGreen: rgb(10, 218, 218);
+    --backGroundColor: rgb(218,218,218);
+}
+
+.hero-section{
+    background: var(--backGroundColor);
+    height: 700px;
+}
+
+.hero-section-wrapper{
+    margin-left: 70px;
+    padding-top: 100px;
+   
+    
+}
+
+.hero-section-wrapper h3{
+    margin-top: 10px;
+   color: var(--blueGreen);
+}
+
+.hero-list{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
