@@ -15,7 +15,7 @@ constructor(props) {
 
 
     render() {
-        const { h1_header, h3_header, list_1} = this.props
+        const { h1_header, h3_header, list_1, hideComponent } = this.props
 
         return (
             <div className='hero-section'>
@@ -26,7 +26,10 @@ constructor(props) {
                         <BsFillCaretRightFill />
                         <p>{list_1}</p>
                     </div>  
-                    <Button />       
+                    <Button 
+                    btn_label='Create Your CV Today'
+                    onClick={() => hideComponent('showHideCV_holder')}
+                    />       
                 </div>
                 
             </div>

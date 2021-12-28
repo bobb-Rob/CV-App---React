@@ -1,0 +1,43 @@
+
+:root{
+    --borderLines: rgb(128, 126, 126);
+}
+
+.personal_info_section{
+    padding: 10px;
+    border-bottom: 1px solid var(--borderLines);
+}
+
+.title_fname_lname,.email_phone_address{
+    display: flex;
+    /* justify-content: space-around;    */
+}
+
+
+.inputs{
+    width: 250px;
+    margin-top: 20px;
+    margin-right: 30px;
+    padding: 5px;
+}
+
+#title,#phone_number{
+    width: 130px;
+}
+
+.personal_info_submit_edit_btn{
+    margin-top: 20px;
+    
+}
+
+.submit_btn,.edit_btn{
+    height: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 1px 4px 1px rgb(128, 126, 126);    
+}
+
+.edit_btn{
+    margin-left: 10px;
+    width: 50px;
+}
