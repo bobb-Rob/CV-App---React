@@ -17,8 +17,8 @@ constructor(props) {
              email: '',
              phoneNumber: '',
              address: '',
-             linkedInUrl: '',
-             instagramUrl: '',
+             linkedIn: '',
+             instagram: '',
              personalSummary: '',
              submitted: false,
              edit: false
@@ -49,10 +49,21 @@ constructor(props) {
 }
 
 
+    handleChange = (e) => {
+
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+
+
+
     render() {
         return (
             <div className='CV_holder'>
-                <Personal_info />
+                <Personal_info  />
                 <Education />
                 <Experience />
                 <NotableSkills />                
