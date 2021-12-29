@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import './personal_info_section.css'
+import {BsLinkedin, BsInstagram} from "react-icons/bs";
 
 export class Personal_info extends Component {
     constructor(props) {
@@ -35,14 +36,21 @@ export class Personal_info extends Component {
                             className='inputs text_input' name='address' required />
                         </div>
 
-                        {/* <div className='social_media' >
-
-                        </div> */}
+                        <div className='social_media' >
+                            <div>
+                            <BsLinkedin  /> <input type='text' id='linkedIn' placeholder='Your LinkedIn handle' 
+                            className='inputs text_input' name='linkedIn' />                            
+                            </div>
+                            <div>
+                            <BsInstagram /> <input type='text' id='instagram' placeholder='Your Instagram handle' 
+                            className='inputs text_input' name='instagram' />                            
+                            </div>
+                        </div>
 
                         <div  className="personal_summary">
                             <label htmlFor="personal_summary">
                                 Personal Summary <br/>
-                                <textarea id='personal_summary' name='personal_summary' rows='5' cols='90' required />
+                                <textarea id='personal_summary' name='personal_summary' rows='5' cols='97' required />
                             </label>                           
                         </div>
 

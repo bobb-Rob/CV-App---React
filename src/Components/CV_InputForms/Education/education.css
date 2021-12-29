@@ -1,0 +1,23 @@
+:root{
+    --borderLines: rgb(128, 126, 126);
+    --blueGreen: rgb(10, 218, 218);
+    --backGroundColor: rgb(218,218,218);
+}
+
+.educationSection,.education_submit_edit_btn,.experienceSection,.experience_submit_edit_btn{
+    margin-top: 20px;
+}
+
+
+.educationInputs,.experienceInputs{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+}
+
+.education,.experience{
+ width: 850px;
+ margin-top: 20px;
+ margin-right: 0px;
+ padding: 5px;
+}
