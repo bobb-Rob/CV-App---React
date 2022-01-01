@@ -35,14 +35,21 @@
     
 }
 
-.submit_btn,.edit_btn{
+.submit_btn,.edit_btn,.delete_btn{
     height: 25px;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 1px 1px 4px 1px rgb(128, 126, 126);    
 }
 
-.edit_btn,.addBtn{
+.delete_btn{
+    margin-left: 0px !important;
+    margin: 10px;
+}
+
+
+
+.edit_btn,.addBtn,.delete_btn{
     margin-left: 10px;
     min-width: 50px;
 }

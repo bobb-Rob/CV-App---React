@@ -2,7 +2,7 @@ import './App.css';
 import react, { Component } from 'react';
 import Header from './Components/header/header';
 import HeroSection from './Components/heroPage/HeroSection';
-import CV_holder from './Components/CV_InputForms/CV_holder';
+import { InputForms } from './Components/CV_InputForms/InputForms';
 
 // import TaskApp from './Components/TaskApp';
 // import ReactForm from './Components/ReactForm';
@@ -27,7 +27,7 @@ class App extends Component {
         switch (name) {   
         case "showHideCV_holder":
             this.setState({ showHideCV_holder: !this.state.showHideCV_holder }, ()=>  
-            console.log(" 'Create Your CV Today' Button clicked " + this.state));           
+            console.log(this.state));           
             break;
 
         case "showHideHero_section":
@@ -59,7 +59,7 @@ class App extends Component {
         }  
 
         {!showHideCV_holder ? 
-        null : <CV_holder /> 
+        null : <InputForms /> 
         }   
 
       </div>

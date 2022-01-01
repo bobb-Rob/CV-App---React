@@ -12,7 +12,9 @@
 .educationInputs,.experienceInputs{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    
+    align-items: flex-start; 
+    border-bottom: 2px solid var(--borderLines);
+    margin-bottom: 20px;  
 }
 
 .education,.experience{
