@@ -68,11 +68,11 @@ constructor(props) {
             }           
         }        
 
-                        
-           
         console.log(alleducation)
         console.log(notEmpty())
-        console.log(notSubmitted())       
+        console.log(notSubmitted())              
+           
+          
 
         return (
             <section className='educationSection' >
@@ -82,26 +82,18 @@ constructor(props) {
                     {notSubmitted() && alleducation}
                                      
                 <div className='education_submit_edit_btn' >
-                    { (notEmpty() && notSubmitted())  && 
-                        // <div>
-                            // { notSubmitted() && 
-                            <div>
-                                {/* { notEmpty() && */}
+                    { (notEmpty() && notSubmitted())  &&                       
+                            <div>                               
                                 <button type='submit' 
                                 form='cvForm'  className='submit_btn btn'                        
-                                >Submit this Section</button>
-                                {/* }                                 */}
+                                >Submit this Section</button>                               
 
                                 <button type='button' className='edit_btn btn' 
                                 onClick={(e) => addEducation(e) }>
                                 Add</button>
                             </div>                               
-                            }
-                                                          
-                        {/* </div> : 
-                           null */}
-                         
-
+                            }                                       
+                       
                         { (!notEmpty() && !notSubmitted())   && 
                          <button type='button' className='edit_btn btn' 
                          onClick={(e) => addEducation(e) }>

@@ -39,11 +39,13 @@ constructor(props) {
              company: '',
              city: '',
              from: '',
-             to: '',            
+             to: '',
+             id: uniqid(),           
              submitted: false,
          }],
          skills: [{
-            s1: '',
+            skill: '',
+            id: uniqid(),
             submitted: false,
          }]
     }
@@ -55,6 +57,13 @@ constructor(props) {
     this.addEducation =this.addEducation.bind(this)
     this.deleteEducation =this.deleteEducation.bind(this)
     this.editEducation =this.editEducation.bind(this)
+    this.handleExperienceChange = this.handleExperienceChange.bind(this)
+    this.addExperience = this.addExperience.bind(this)
+    this.onSubmitExperience = this.onSubmitExperience.bind(this)
+    this.editExperience = this.editExperience.bind(this)
+    this.handleSkillChange = this.handleSkillChange.bind(this)
+    this.addSkill = this.addSkill.bind(this)
+    this.deleteSkill = this.deleteSkill.bind(this)
 }
 
 
@@ -162,7 +171,136 @@ constructor(props) {
         })
     }
 
+    handleExperienceChange = (e, id) => {
+        e.stopPropagation()
+        const { name, value } = e.target        
+        this.setState((prevState) => {
+            const newExperience = prevState.experience.map((experience) => {
+                if(experience.id === id){
+                    return {...experience, [name]: value}
+                }
+                return experience;
+            })
+        return {...prevState, experience: [...newExperience]}
+        }, () => console.log(this.state.experience))
+    }
 
+
+    addExperience = (e) => {
+        e.stopPropagation()
+        this.setState((prevState) => ({
+            ...prevState,
+            experience: [...prevState.experience,{
+                position: '',
+                company: '',
+                city: '',
+                from: '',
+                to: '',
+                id: uniqid(),           
+                submitted: false,
+            },]
+        }))
+    }
+
+
+    onDeleteExperience = (id) => {
+        this.setState((prevState) => {
+            const newExperience = prevState.experience.filter(
+              (experience) => experience.id !== id)
+            return { ...prevState, experience: [...newExperience] }
+          }, () => console.log(this.state.education))
+
+    } 
+
+    onSubmitExperience = (e) => {             
+            e.preventDefault();
+            console.log('experience submitted');    
+
+            this.setState((prevState) => {
+               return {...prevState,
+                experience: [
+                    ...prevState.experience.map((experience) => {
+                       return { ...experience, submitted: true }   
+                    })]
+            }
+        }, () => console.log(this.state)) 
+         
+    }
+
+    editExperience = (e) => {
+        e.stopPropagation();
+        this.setState((prevState) => {
+            return {...prevState,
+                experience: [
+                    ...prevState.experience.map((experience) => {
+                       return { ...experience, submitted: false }   
+                    })]
+            }
+        })
+    }
+
+
+    handleSkillChange = (e, id) => {
+        const { name, value} = e.target
+        this.setState((prevState) => {
+            const newSkill = prevState.skills.map((skill) => {
+                if(skill.id === id){
+                    return {...skill, [name]: value}
+                }
+                return skill;
+            })
+        return {...prevState, skills: [...newSkill]}
+        }, () => console.log(this.state.skills))
+    }
+
+    addSkill = (e) => {    
+        e.stopPropagation()
+        this.setState((prevState) => ({
+            ...prevState,
+            skills: [...prevState.skills,{                
+                skill: '',
+                id: uniqid(),           
+                submitted: false,
+            },]
+        }))
+        
+    }
+
+    deleteSkill = (id) => {
+        this.setState((prevState) => {
+            const newSkill = prevState.skills.filter(
+              (skill) => skill.id !== id)
+            return { ...prevState, skills: [...newSkill] }
+          }, () => console.log(this.state.skills))
+
+    }
+
+
+    submitSkillForm = (e) => {
+        e.preventDefault();
+        console.log('Skill submitted');    
+
+        this.setState((prevState) => {
+           return {...prevState,
+            skills: [
+                ...prevState.skills.map((skill) => {
+                   return { ...skill, submitted: true }   
+                })]
+        }
+    }, () => console.log(this.state)) 
+    }
+
+    editSkill = (e) => {
+        e.stopPropagation();
+        this.setState((prevState) => {
+            return {...prevState,
+                skills: [
+                    ...prevState.skills.map((skill) => {
+                       return { ...skill, submitted: false }   
+                    })]
+            }
+        })
+    }
 
 
 
@@ -181,8 +319,18 @@ constructor(props) {
                 onEducationSubmit={this.onEducationSubmit} 
                 editEducation={this.editEducation}            
                 />              
-                <Experience />
-                <NotableSkills />                
+                <Experience onChange={this.handleExperienceChange}
+                arrayExperience={this.state.experience}
+                addExperience={this.addExperience }
+                onDeleteExperience = {this.onDeleteExperience}
+                onExperienceSubmit={this.onSubmitExperience}
+                editExperience={this.editExperience}
+                />
+                <NotableSkills 
+                allSkills = {this.state.skills} onChange={this.handleSkillChange}
+                addSkill={this.addSkill} deleteSkill={this.deleteSkill}
+                submitSkillForm={this.submitSkillForm} editSkill={this.editSkill}
+                />                
             </div>
         )
     }
