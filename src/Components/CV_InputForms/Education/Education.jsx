@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './education.css'
 import uniqid from 'uniqid'
-import Input from '../Input'
+
 
 class Education extends Component {
 constructor(props) {

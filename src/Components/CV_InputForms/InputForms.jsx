@@ -3,6 +3,7 @@ import Personal_info from './Personal_info_Section/Personal_info';
 import {Education} from './Education/Education';
 import Experience from './Experience&Skills/Experience';
 import { NotableSkills } from './Experience&Skills/skills';
+import { Reference } from './References/Reference';
 import uniqid from 'uniqid';
 import './InputForms.css'
 
@@ -47,7 +48,17 @@ constructor(props) {
             skill: '',
             id: uniqid(),
             submitted: false,
-         }]
+         },{
+            skill: '',
+            id: uniqid(),
+            submitted: false,
+         },],
+
+         references: [{
+            reference: '',           
+            id: uniqid(),
+            submitted: false,
+         },]
     }
 
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
@@ -61,9 +72,11 @@ constructor(props) {
     this.addExperience = this.addExperience.bind(this)
     this.onSubmitExperience = this.onSubmitExperience.bind(this)
     this.editExperience = this.editExperience.bind(this)
+
     this.handleSkillChange = this.handleSkillChange.bind(this)
     this.addSkill = this.addSkill.bind(this)
     this.deleteSkill = this.deleteSkill.bind(this)
+    // this.onRadioChange = this.onRadioChange.bind(this)
 }
 
 
@@ -302,6 +315,95 @@ constructor(props) {
         })
     }
 
+    handleReferenceChange = (e, id) => {
+        const value = e.target.type === 'radio' ? e.target.checked : e.target.value;
+        const { name } = e.target
+        this.setState((prevState) => {
+            const newReference = prevState.references.map((reference) => {
+                if(reference.id === id){
+                    return {...reference, [name]: value}
+                }
+                return reference;
+            })
+        return {...prevState, references: [...newReference]}
+        }, () => console.log(this.state.references))
+    }
+
+    addReference = (e) => {    
+        e.stopPropagation()
+        this.setState((prevState) => ({
+            ...prevState,
+            references: [...prevState.references,{                
+                reference: '',               
+                id: uniqid(),           
+                submitted: false,
+            },]
+        }))
+        
+    }
+
+    deleteReference = (id) => {
+        this.setState((prevState) => {
+            const newReference = prevState.references.filter(
+              (reference) => reference.id !== id)
+            return { ...prevState, references: [...newReference] }
+          }, () => console.log(this.state.references))
+
+    }
+
+
+    submitReferenceForm = (e) => {
+        e.preventDefault();
+        console.log('reference submitted');    
+
+        this.setState((prevState) => {
+           return {...prevState,
+            references: [
+                ...prevState.references.map((reference) => {
+                   return { ...reference, submitted: true }   
+                })]
+        }
+    }, () => console.log(this.state)) 
+    }
+
+    editReference = (e) => {
+        e.stopPropagation();
+        this.setState((prevState) => {
+            return {...prevState,
+                references: [
+                    ...prevState.references.map((reference) => {
+                       return { ...reference, submitted: false }   
+                    })]
+            }
+        })
+    }
+
+
+    handleReferenceChange = (e, id) => {
+        const value = e.target.type === 'radio' ? e.target.checked : e.target.value;
+        const { name } = e.target
+        this.setState((prevState) => {
+            const newReference = prevState.references.map((reference) => {
+                if(reference.id === id){
+                    return {...reference, [name]: value}
+                }
+                return reference;
+            })
+        return {...prevState, references: [...newReference]}
+        }, () => console.log(this.state.references))
+    }
+
+
+
+    // onRadioChange = (e) => {
+    //     const { value } = e.target      
+    //         this.setState((prevState) => {
+    //         const newRef = prevState.references.map((reference) => {
+    //             return {...reference, provided: value}
+    //         })
+    //         return {...prevState, references: [...newRef]}
+    //     }, () => console.log(this.state.references))
+    // }
 
 
     render() {
@@ -330,7 +432,23 @@ constructor(props) {
                 allSkills = {this.state.skills} onChange={this.handleSkillChange}
                 addSkill={this.addSkill} deleteSkill={this.deleteSkill}
                 submitSkillForm={this.submitSkillForm} editSkill={this.editSkill}
-                />                
+                /> 
+
+                <Reference 
+                allData={this.state.references} onChange={this.handleReferenceChange}
+                addData={this.addReference} editData={this.editReference} 
+                deleteData={this.deleteReference} submitForm={this.submitReferenceForm}
+                
+                />
+
+
+            <div className='finalButtonSection' >
+                <button>Preview CV</button>
+                <button>Generate PDF</button>     
+
+            </div>
+               
+
             </div>
         )
     }
